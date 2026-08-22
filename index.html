@@ -101,6 +101,57 @@
             </div>
         </section>
 
+        <!-- Pair Builder Interactive Slot Panel -->
+        <section id="slotBanner" class="bg-gradient-to-r from-purple-900 via-brand-light to-purple-950 text-white rounded-3xl p-6 shadow-md mb-8 border border-purple-800/50 transition-all duration-300">
+            <div id="slotEmptyState" class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center shrink-0">
+                        <svg class="w-5 h-5 text-brand-dark" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-extrabold text-white">Interactive Pair Builder Mode</h3>
+                        <p class="text-xs text-purple-200/80 mt-0.5">Click <span class="bg-white/20 text-brand-dark px-1.5 py-0.5 rounded font-bold">+ Slot</span> or <span class="bg-white/20 text-brand-dark px-1.5 py-0.5 rounded font-bold">Load into Slot</span> on any player to browse all valid candidate partners who make up 450 games!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slotActiveState" class="hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-6">
+                    <!-- Slot 1 Player Info -->
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-dark text-brand-light font-black text-xl flex items-center justify-center shrink-0 shadow-md">
+                            1
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-extrabold uppercase tracking-widest text-brand-dark">Slot Player Selected</span>
+                            <h3 id="slotPlayerName" class="text-lg font-black text-white cursor-pointer hover:underline" onclick="showSlotPlayerDetails()">--</h3>
+                            <p id="slotPlayerMeta" class="text-xs text-purple-200/80 font-medium">--</p>
+                        </div>
+                    </div>
+
+                    <div class="hidden sm:block text-2xl font-black text-brand-dark select-none">+</div>
+
+                    <!-- Slot 2 Required Candidate Target -->
+                    <div class="flex items-center space-x-4 bg-white/10 p-3 rounded-2xl border border-white/10">
+                        <div class="w-10 h-10 rounded-xl bg-brand-accent/30 text-brand-accent font-bold text-lg flex items-center justify-center shrink-0">
+                            ?
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-extrabold uppercase tracking-widest text-purple-200">Required Candidate Target</span>
+                            <p id="slotTargetApps" class="text-base font-black text-brand-dark">-- games needed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <button id="btnClearSlot" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider transition-colors border border-white/20 shrink-0 self-start md:self-auto">
+                    &times; Clear Slot
+                </button>
+            </div>
+        </section>
+
         <!-- Navigation Tabs & View Options -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-200 dark:border-slate-700 mb-6 gap-4">
             <div class="flex space-x-1" role="tablist">
@@ -167,8 +218,8 @@
                 <svg class="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <h3 class="text-base font-bold text-slate-600 dark:text-slate-300">No combinations found</h3>
-                <p class="text-slate-400 text-xs mt-1">Try adjusting your search query or filters.</p>
+                <h3 class="text-base font-bold text-slate-600 dark:text-slate-300">No candidate combinations found</h3>
+                <p class="text-slate-400 text-xs mt-1">Try clearing the slot player or adjusting search filters.</p>
             </div>
 
             <!-- Pagination Control for performance -->
@@ -216,9 +267,14 @@
                     </div>
 
                     <!-- Appearances block -->
-                    <div class="bg-purple-50 dark:bg-purple-950/20 p-4 rounded-2xl border border-purple-100/50 dark:border-purple-900/50">
-                        <p class="text-xs font-bold text-purple-400 uppercase tracking-wider">Premier League Appearances</p>
-                        <p id="modalPlayerAppearances" class="text-2xl font-black text-brand-light dark:text-brand-dark mt-1">--</p>
+                    <div class="bg-purple-50 dark:bg-purple-950/20 p-4 rounded-2xl border border-purple-100/50 dark:border-purple-900/50 flex justify-between items-center">
+                        <div>
+                            <p class="text-xs font-bold text-purple-400 uppercase tracking-wider">Premier League Appearances</p>
+                            <p id="modalPlayerAppearances" class="text-2xl font-black text-brand-light dark:text-brand-dark mt-1">--</p>
+                        </div>
+                        <button id="btnModalLoadSlot" class="px-4 py-2 bg-brand-light dark:bg-brand-dark text-white dark:text-brand-light rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-sm">
+                            Load into Slot
+                        </button>
                     </div>
 
                     <!-- Teams List -->
@@ -245,6 +301,8 @@
         let searchQuery = '';
         let selectedClub = '';
         let selectedNationality = '';
+        let slotPlayerId = null; // Active player ID loaded into Slot 1
+        let currentModalPlayerId = null;
         let visibleLimit = 40; // Pagination step limit for render performance
 
         // DOM elements cache
@@ -265,6 +323,14 @@
         const elLoadMoreContainer = document.getElementById('loadMoreContainer');
         const elBtnLoadMore = document.getElementById('btnLoadMore');
 
+        // Slot Elements
+        const elSlotEmptyState = document.getElementById('slotEmptyState');
+        const elSlotActiveState = document.getElementById('slotActiveState');
+        const elSlotPlayerName = document.getElementById('slotPlayerName');
+        const elSlotPlayerMeta = document.getElementById('slotPlayerMeta');
+        const elSlotTargetApps = document.getElementById('slotTargetApps');
+        const elBtnClearSlot = document.getElementById('btnClearSlot');
+
         // Modal elements
         const elPlayerModal = document.getElementById('playerModal');
         const elModalBackdrop = document.getElementById('modalBackdrop');
@@ -273,6 +339,7 @@
         const elModalPlayerNationality = document.getElementById('modalPlayerNationality');
         const elModalPlayerAppearances = document.getElementById('modalPlayerAppearances');
         const elModalPlayerTeams = document.getElementById('modalPlayerTeams');
+        const elBtnModalLoadSlot = document.getElementById('btnModalLoadSlot');
         const elModalClose = document.getElementById('modalClose');
         const elModalCloseBtn = document.getElementById('modalCloseBtn');
 
@@ -361,7 +428,49 @@
             });
         }
 
-        // 3. Filtering logic
+        // 3. Slot Management
+        window.loadPlayerIntoSlot = function(playerId) {
+            const player = dataset.views.player_directory[playerId];
+            if (!player) return;
+
+            slotPlayerId = playerId;
+
+            // UI Slot banner update
+            elSlotEmptyState.classList.add('hidden');
+            elSlotActiveState.classList.remove('hidden');
+
+            elSlotPlayerName.innerText = `${player.first_name} ${player.last_name}`;
+            elSlotPlayerMeta.innerText = `${player.nationality} \u00B7 ${player.appearances} PL Appearances`;
+
+            const neededApps = 450 - player.appearances;
+            elSlotTargetApps.innerText = `${neededApps} games needed`;
+
+            visibleLimit = 40; // reset pagination limit
+            closeModal();
+
+            // Scroll smoothly up to slot banner
+            document.getElementById('slotBanner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            render();
+        };
+
+        window.clearSlot = function() {
+            slotPlayerId = null;
+            elSlotActiveState.classList.add('hidden');
+            elSlotEmptyState.classList.remove('hidden');
+            visibleLimit = 40;
+            render();
+        };
+
+        elBtnClearSlot.addEventListener('click', window.clearSlot);
+
+        window.showSlotPlayerDetails = function() {
+            if (slotPlayerId) {
+                showPlayerDetails(slotPlayerId);
+            }
+        };
+
+        // 4. Filtering logic
         function getFilteredPairs() {
             const pairsList = dataset.views.ranked_by_balance;
             const directory = dataset.views.player_directory;
@@ -369,8 +478,18 @@
             const q = searchQuery.toLowerCase().trim();
 
             return pairsList.filter(pair => {
-                const p1 = directory[pair[0]];
-                const p2 = directory[pair[1]];
+                const id1 = pair[0];
+                const id2 = pair[1];
+
+                // If a slot player is active, pair MUST contain slotPlayerId
+                if (slotPlayerId !== null) {
+                    if (id1 !== slotPlayerId && id2 !== slotPlayerId) {
+                        return false;
+                    }
+                }
+
+                const p1 = directory[id1];
+                const p2 = directory[id2];
 
                 if (!p1 || !p2) return false;
 
@@ -400,16 +519,23 @@
             });
         }
 
-        // 4. Grouping logic for "Grouped / Ranked View"
+        // 5. Grouping logic for "Grouped / Ranked View"
         function buildGroupedStructure(filteredPairs) {
             const directory = dataset.views.player_directory;
 
-            // To prevent displaying the same pair under multiple anchors in a redundant way,
-            // we will group pairs. For each filtered pair, we check which player is more "central"
-            // (has more pairings overall in results) to be the anchor, OR we can display them
-            // elegantly grouped under the first player, and then skip already displayed pairs.
-            // Let's implement an extremely clean anchor grouping:
-            // For every unique player involved in the filtered pairs, we aggregate their partners.
+            // If slot player is active, slot player is the single anchor!
+            if (slotPlayerId !== null) {
+                const partners = [];
+                filteredPairs.forEach(pair => {
+                    const partnerId = pair[0] === slotPlayerId ? pair[1] : pair[0];
+                    partners.push(partnerId);
+                });
+                return {
+                    anchorIds: [slotPlayerId],
+                    playerPartners: { [slotPlayerId]: partners }
+                };
+            }
+
             const playerPartners = {};
             filteredPairs.forEach(pair => {
                 const [id1, id2] = pair;
@@ -419,10 +545,7 @@
                 playerPartners[id2].push(id1);
             });
 
-            // Now, we want to display the anchor cards ordered.
-            // Let's sort the anchor players by their appearances descending,
-            // or by their number of partners descending!
-            // Sorting by number of partners descending makes the most "interesting" anchors show up first!
+            // Sort anchor players by their number of partners descending
             const anchorIds = Object.keys(playerPartners).sort((a, b) => {
                 return playerPartners[b].length - playerPartners[a].length;
             });
@@ -430,7 +553,7 @@
             return { anchorIds, playerPartners };
         }
 
-        // 5. Render engine
+        // 6. Render engine
         function render() {
             elLoading.classList.add('hidden');
             elContentList.innerHTML = '';
@@ -456,7 +579,6 @@
             const directory = dataset.views.player_directory;
             const { anchorIds, playerPartners } = buildGroupedStructure(filteredPairs);
 
-            // Paginate anchor rendering for high performance
             const pageAnchors = anchorIds.slice(0, visibleLimit);
 
             pageAnchors.forEach(anchorId => {
@@ -467,14 +589,15 @@
 
                 // Card Container
                 const card = document.createElement('div');
-                card.className = "bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200/60 dark:border-slate-700/60 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:shadow-md transition-all duration-200";
+                card.className = "bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200/60 dark:border-slate-700/60 flex flex-col gap-6 hover:shadow-md transition-all duration-200";
 
                 // Anchor Player Info
+                const isCurrentSlot = slotPlayerId === anchor.id;
                 const anchorBlock = `
                     <div class="flex-1">
                         <div class="flex items-center space-x-2.5">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-brand-light text-brand-dark dark:bg-purple-950 dark:text-brand-dark">
-                                Anchor
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${isCurrentSlot ? 'bg-brand-accent text-white' : 'bg-brand-light text-brand-dark dark:bg-purple-950 dark:text-brand-dark'}">
+                                ${isCurrentSlot ? 'Active Slot Player' : 'Anchor'}
                             </span>
                             <span class="text-xs font-semibold text-slate-400">${anchor.nationality}</span>
                         </div>
@@ -485,22 +608,31 @@
                     </div>
                 `;
 
-                // Stats Circle (Appearances)
+                // Stats Circle & Slot Button
                 const anchorAppsCircle = `
-                    <div class="flex items-center space-x-3 bg-slate-50 dark:bg-slate-900/50 px-4 py-2.5 rounded-2xl border border-slate-100 dark:border-slate-800">
-                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Caps:</span>
-                        <span class="text-lg font-black text-brand-light dark:text-brand-dark">${anchor.appearances}</span>
+                    <div class="flex items-center space-x-3">
+                        <div class="flex items-center space-x-3 bg-slate-50 dark:bg-slate-900/50 px-4 py-2.5 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Caps:</span>
+                            <span class="text-lg font-black text-brand-light dark:text-brand-dark">${anchor.appearances}</span>
+                        </div>
+                        ${!isCurrentSlot ? `
+                            <button onclick="loadPlayerIntoSlot(${anchor.id})" class="px-3.5 py-2.5 bg-purple-100 hover:bg-purple-200 dark:bg-purple-950/60 dark:hover:bg-purple-900/80 text-brand-light dark:text-brand-dark font-extrabold text-xs rounded-2xl transition-colors shadow-sm">
+                                + Slot
+                            </button>
+                        ` : ''}
                     </div>
                 `;
 
                 // Partners Block
                 let partnersHTML = '';
-                partners.slice(0, 5).forEach(partnerId => {
+                const maxPartnersToShow = slotPlayerId !== null ? partners.length : 5;
+
+                partners.slice(0, maxPartnersToShow).forEach(partnerId => {
                     const partner = directory[partnerId];
                     if (!partner) return;
 
                     partnersHTML += `
-                        <div class="flex items-center justify-between text-sm py-2 border-b border-slate-100 dark:border-slate-700 last:border-b-0">
+                        <div class="flex items-center justify-between text-sm py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-b-0">
                             <div class="flex items-center space-x-2">
                                 <span class="text-slate-400 text-xs font-semibold select-none">&bull;</span>
                                 <span class="font-bold text-slate-700 dark:text-slate-200 hover:text-brand-accent dark:hover:text-brand-dark cursor-pointer" onclick="showPlayerDetails(${partner.id})">
@@ -508,25 +640,27 @@
                                 </span>
                                 <span class="text-[10px] px-1.5 py-0.2 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-400 dark:text-slate-300 font-semibold">${partner.nationality}</span>
                             </div>
-                            <div class="flex items-center space-x-4">
-                                <span class="text-xs font-semibold text-slate-400">Partner Caps: <strong class="text-slate-700 dark:text-slate-200 font-extrabold">${partner.appearances}</strong></span>
-                                <span class="inline-flex items-center justify-center w-20 px-2 py-0.5 rounded-md text-[10px] font-extrabold tracking-wide uppercase ${Math.abs(anchor.appearances - partner.appearances) <= 50 ? 'bg-emerald-50 dark:bg-emerald-950/20 text-emerald-500' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'}">
+                            <div class="flex items-center space-x-3 sm:space-x-4">
+                                <span class="text-xs font-semibold text-slate-400">Caps: <strong class="text-slate-700 dark:text-slate-200 font-extrabold">${partner.appearances}</strong></span>
+                                <span class="inline-flex items-center justify-center px-2 py-0.5 rounded-md text-[10px] font-extrabold tracking-wide uppercase ${Math.abs(anchor.appearances - partner.appearances) <= 50 ? 'bg-emerald-50 dark:bg-emerald-950/20 text-emerald-500' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'}">
                                     Diff: ${Math.abs(anchor.appearances - partner.appearances)}
                                 </span>
+                                <button onclick="loadPlayerIntoSlot(${partner.id})" class="px-2.5 py-1 bg-slate-100 hover:bg-purple-100 dark:bg-slate-700 dark:hover:bg-purple-900/60 text-slate-600 hover:text-brand-accent dark:text-slate-200 font-bold text-[11px] rounded-lg transition-colors">
+                                    Slot
+                                </button>
                             </div>
                         </div>
                     `;
                 });
 
-                if (partners.length > 5) {
+                if (slotPlayerId === null && partners.length > 5) {
                     partnersHTML += `
                         <div class="text-center pt-2">
-                            <p class="text-xs text-slate-400 font-semibold italic">+ ${partners.length - 5} more partner pairings for this anchor</p>
+                            <p class="text-xs text-slate-400 font-semibold italic">+ ${partners.length - 5} more candidate partners available</p>
                         </div>
                     `;
                 }
 
-                // Append everything
                 card.innerHTML = `
                     <div class="flex-1 flex flex-col gap-4">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-700/60">
@@ -534,7 +668,7 @@
                             ${anchorAppsCircle}
                         </div>
                         <div class="flex flex-col">
-                            <p class="text-xs font-extrabold text-slate-400 uppercase tracking-widest mb-2">Valid Partners (${partners.length})</p>
+                            <p class="text-xs font-extrabold text-slate-400 uppercase tracking-widest mb-2">${slotPlayerId !== null ? 'Matching Candidate Partners (' + partners.length + ')' : 'Valid Partners (' + partners.length + ')'}</p>
                             ${partnersHTML}
                         </div>
                     </div>
@@ -542,7 +676,6 @@
                 elContentList.appendChild(card);
             });
 
-            // Manage Load More button
             if (anchorIds.length > visibleLimit) {
                 elLoadMoreContainer.classList.remove('hidden');
             } else {
@@ -552,8 +685,6 @@
 
         function renderAllCombinations(filteredPairs) {
             const directory = dataset.views.player_directory;
-
-            // Paginate rendering for high performance
             const pagePairs = filteredPairs.slice(0, visibleLimit);
 
             pagePairs.forEach(pair => {
@@ -568,11 +699,16 @@
 
                 item.innerHTML = `
                     <!-- Player A -->
-                    <div class="flex-1 text-center sm:text-left">
-                        <h5 class="text-base font-extrabold text-slate-900 dark:text-white hover:text-brand-accent dark:hover:text-brand-dark cursor-pointer" onclick="showPlayerDetails(${p1.id})">
-                            ${p1.first_name} ${p1.last_name}
-                        </h5>
-                        <p class="text-xs text-slate-400 font-semibold mt-0.5">${p1.nationality} &middot; <strong class="text-brand-light dark:text-brand-dark font-extrabold">${p1.appearances}</strong> games</p>
+                    <div class="flex-1 text-center sm:text-left flex items-center justify-between sm:justify-start gap-3">
+                        <div>
+                            <h5 class="text-base font-extrabold text-slate-900 dark:text-white hover:text-brand-accent dark:hover:text-brand-dark cursor-pointer" onclick="showPlayerDetails(${p1.id})">
+                                ${p1.first_name} ${p1.last_name}
+                            </h5>
+                            <p class="text-xs text-slate-400 font-semibold mt-0.5">${p1.nationality} &middot; <strong class="text-brand-light dark:text-brand-dark font-extrabold">${p1.appearances}</strong> games</p>
+                        </div>
+                        <button onclick="loadPlayerIntoSlot(${p1.id})" class="px-2 py-1 bg-slate-100 hover:bg-purple-100 dark:bg-slate-700 dark:hover:bg-purple-900/60 text-slate-600 hover:text-brand-accent dark:text-slate-200 font-bold text-[10px] rounded-lg transition-colors">
+                            + Slot
+                        </button>
                     </div>
 
                     <!-- Visual Plus Indicator -->
@@ -581,14 +717,19 @@
                     </div>
 
                     <!-- Player B -->
-                    <div class="flex-1 text-center sm:text-right">
-                        <h5 class="text-base font-extrabold text-slate-900 dark:text-white hover:text-brand-accent dark:hover:text-brand-dark cursor-pointer" onclick="showPlayerDetails(${p2.id})">
-                            ${p2.first_name} ${p2.last_name}
-                        </h5>
-                        <p class="text-xs text-slate-400 font-semibold mt-0.5">${p2.nationality} &middot; <strong class="text-brand-light dark:text-brand-dark font-extrabold">${p2.appearances}</strong> games</p>
+                    <div class="flex-1 text-center sm:text-right flex items-center justify-between sm:justify-end gap-3">
+                        <button onclick="loadPlayerIntoSlot(${p2.id})" class="px-2 py-1 bg-slate-100 hover:bg-purple-100 dark:bg-slate-700 dark:hover:bg-purple-900/60 text-slate-600 hover:text-brand-accent dark:text-slate-200 font-bold text-[10px] rounded-lg transition-colors order-last sm:order-first">
+                            + Slot
+                        </button>
+                        <div>
+                            <h5 class="text-base font-extrabold text-slate-900 dark:text-white hover:text-brand-accent dark:hover:text-brand-dark cursor-pointer" onclick="showPlayerDetails(${p2.id})">
+                                ${p2.first_name} ${p2.last_name}
+                            </h5>
+                            <p class="text-xs text-slate-400 font-semibold mt-0.5">${p2.nationality} &middot; <strong class="text-brand-light dark:text-brand-dark font-extrabold">${p2.appearances}</strong> games</p>
+                        </div>
                     </div>
 
-                    <!-- Split Line on Small devices, otherwise gap -->
+                    <!-- Split Line on Small devices -->
                     <div class="w-full sm:w-px sm:h-8 bg-slate-200 dark:bg-slate-700 shrink-0"></div>
 
                     <!-- Pair metadata status -->
@@ -603,7 +744,6 @@
                 elContentList.appendChild(item);
             });
 
-            // Manage Load More button
             if (filteredPairs.length > visibleLimit) {
                 elLoadMoreContainer.classList.remove('hidden');
             } else {
@@ -611,11 +751,11 @@
             }
         }
 
-        // 6. Navigation Tabs events
+        // 7. Navigation Tabs events
         elTabGrouped.addEventListener('click', () => {
             if (currentTab === 'grouped') return;
             currentTab = 'grouped';
-            visibleLimit = 40; // reset pagination limit
+            visibleLimit = 40;
             elTabGrouped.className = "px-5 py-3 font-semibold text-sm border-b-2 border-brand-accent text-brand-accent focus:outline-none transition-colors";
             elTabAll.className = "px-5 py-3 font-semibold text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 focus:outline-none transition-colors";
             render();
@@ -624,41 +764,43 @@
         elTabAll.addEventListener('click', () => {
             if (currentTab === 'all') return;
             currentTab = 'all';
-            visibleLimit = 40; // reset pagination limit
+            visibleLimit = 40;
             elTabAll.className = "px-5 py-3 font-semibold text-sm border-b-2 border-brand-accent text-brand-accent focus:outline-none transition-colors";
             elTabGrouped.className = "px-5 py-3 font-semibold text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 focus:outline-none transition-colors";
             render();
         });
 
-        // 7. Load more action
+        // 8. Load more action
         elBtnLoadMore.addEventListener('click', () => {
             visibleLimit += 40;
             render();
         });
 
-        // 8. Search & Filters events
+        // 9. Search & Filters events
         elSearchPlayer.addEventListener('input', (e) => {
             searchQuery = e.target.value;
-            visibleLimit = 40; // reset pagination
+            visibleLimit = 40;
             render();
         });
 
         elFilterClub.addEventListener('change', (e) => {
             selectedClub = e.target.value;
-            visibleLimit = 40; // reset pagination
+            visibleLimit = 40;
             render();
         });
 
         elFilterNationality.addEventListener('change', (e) => {
             selectedNationality = e.target.value;
-            visibleLimit = 40; // reset pagination
+            visibleLimit = 40;
             render();
         });
 
-        // 9. Modal Controller
+        // 10. Modal Controller
         window.showPlayerDetails = function(playerId) {
             const player = dataset.views.player_directory[playerId];
             if (!player) return;
+
+            currentModalPlayerId = playerId;
 
             elModalPlayerName.innerText = `${player.first_name} ${player.last_name}`;
             elModalPlayerBirthYear.innerText = player.birth_year;
@@ -680,9 +822,25 @@
                 `;
             }
 
-            // Open Modal
+            // Button state
+            if (slotPlayerId === playerId) {
+                elBtnModalLoadSlot.innerText = "Loaded in Slot";
+                elBtnModalLoadSlot.disabled = true;
+                elBtnModalLoadSlot.className = "px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-400 rounded-xl font-bold text-xs uppercase tracking-wider cursor-not-allowed";
+            } else {
+                elBtnModalLoadSlot.innerText = "Load into Slot";
+                elBtnModalLoadSlot.disabled = false;
+                elBtnModalLoadSlot.className = "px-4 py-2 bg-brand-light dark:bg-brand-dark text-white dark:text-brand-light rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-sm";
+            }
+
             elPlayerModal.classList.remove('hidden');
         };
+
+        elBtnModalLoadSlot.addEventListener('click', () => {
+            if (currentModalPlayerId !== null) {
+                loadPlayerIntoSlot(currentModalPlayerId);
+            }
+        });
 
         function closeModal() {
             elPlayerModal.classList.add('hidden');
@@ -692,14 +850,13 @@
         elModalCloseBtn.addEventListener('click', closeModal);
         elModalBackdrop.addEventListener('click', closeModal);
 
-        // Close on ESC key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !elPlayerModal.classList.contains('hidden')) {
                 closeModal();
             }
         });
 
-        // Startup!
+        // Startup
         initTheme();
         loadData();
     </script>
