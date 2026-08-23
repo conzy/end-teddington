@@ -71,11 +71,9 @@
             <div class="flex items-center space-x-4">
                 <!-- Theme Toggle Button -->
                 <button id="themeToggle" class="p-2 rounded-lg bg-purple-950/50 hover:bg-purple-900/60 text-slate-200 hover:text-brand-dark transition-colors duration-200" aria-label="Toggle Theme">
-                    <!-- Sun Icon (shown in dark mode) -->
                     <svg id="sunIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.122a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414-1.414l-.707-.707zm1.414-10.607a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" clip-rule="evenodd"></path>
                     </svg>
-                    <!-- Moon Icon (shown in light mode) -->
                     <svg id="moonIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                     </svg>
@@ -101,54 +99,86 @@
             </div>
         </section>
 
-        <!-- Pair Builder Interactive Slot Panel -->
+        <!-- Pair Builder Dual-Slot Interactive Panel -->
         <section id="slotBanner" class="bg-gradient-to-r from-purple-900 via-brand-light to-purple-950 text-white rounded-3xl p-6 shadow-md mb-8 border border-purple-800/50 transition-all duration-300">
-            <div id="slotEmptyState" class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5 text-brand-dark" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-extrabold text-white">Interactive Pair Builder Mode</h3>
-                        <p class="text-xs text-purple-200/80 mt-0.5">Click <span class="bg-white/20 text-brand-dark px-1.5 py-0.5 rounded font-bold">+ Slot</span> or <span class="bg-white/20 text-brand-dark px-1.5 py-0.5 rounded font-bold">Load into Slot</span> on any player to browse all valid candidate partners who make up 450 games!</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="slotActiveState" class="hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div class="flex flex-col sm:flex-row sm:items-center gap-6">
-                    <!-- Slot 1 Player Info -->
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-dark text-brand-light font-black text-xl flex items-center justify-center shrink-0 shadow-md">
-                            1
+            <div class="flex flex-col gap-6">
+                <!-- Header Title -->
+                <div class="flex items-center justify-between pb-4 border-b border-purple-800/40">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-xl bg-brand-dark/20 text-brand-dark flex items-center justify-center font-bold">
+                            2
                         </div>
-                        <div>
-                            <span class="text-[10px] font-extrabold uppercase tracking-widest text-brand-dark">Slot Player Selected</span>
-                            <h3 id="slotPlayerName" class="text-lg font-black text-white cursor-pointer hover:underline" onclick="showSlotPlayerDetails()">--</h3>
-                            <p id="slotPlayerMeta" class="text-xs text-purple-200/80 font-medium">--</p>
-                        </div>
+                        <h3 class="text-base font-extrabold text-white">Dual-Slot Pair Builder</h3>
                     </div>
-
-                    <div class="hidden sm:block text-2xl font-black text-brand-dark select-none">+</div>
-
-                    <!-- Slot 2 Required Candidate Target -->
-                    <div class="flex items-center space-x-4 bg-white/10 p-3 rounded-2xl border border-white/10">
-                        <div class="w-10 h-10 rounded-xl bg-brand-accent/30 text-brand-accent font-bold text-lg flex items-center justify-center shrink-0">
-                            ?
-                        </div>
-                        <div>
-                            <span class="text-[10px] font-extrabold uppercase tracking-widest text-purple-200">Required Candidate Target</span>
-                            <p id="slotTargetApps" class="text-base font-black text-brand-dark">-- games needed</p>
-                        </div>
-                    </div>
+                    <button id="btnClearBothSlots" class="text-xs font-bold text-purple-200 hover:text-brand-dark transition-colors uppercase tracking-wider hidden">
+                        Clear Both Slots &times;
+                    </button>
                 </div>
 
-                <!-- Action Button -->
-                <button id="btnClearSlot" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider transition-colors border border-white/20 shrink-0 self-start md:self-auto">
-                    &times; Clear Slot
-                </button>
+                <!-- Dual Slots Container -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- SLOT 1 -->
+                    <div id="slot1Card" class="bg-white/5 rounded-2xl p-4 border border-white/10 flex flex-col justify-between min-h-[100px] transition-all">
+                        <div id="slot1Empty" class="flex items-center justify-between py-2">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-white/10 text-brand-dark font-black text-sm flex items-center justify-center">1</span>
+                                <div>
+                                    <p class="text-xs font-bold text-purple-200 uppercase">Slot 1 (Empty)</p>
+                                    <p class="text-xs text-purple-300/70">Click '+ Slot' on any player</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="slot1Filled" class="hidden flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-brand-dark text-brand-light font-black text-sm flex items-center justify-center shadow">1</span>
+                                <div>
+                                    <p class="text-[10px] font-extrabold text-brand-dark uppercase tracking-widest">Slot 1 Loaded</p>
+                                    <h4 id="slot1Name" class="text-base font-extrabold text-white cursor-pointer hover:underline" onclick="showPlayerDetails(slot1Id)">--</h4>
+                                    <p id="slot1Meta" class="text-xs text-purple-200/80">--</p>
+                                </div>
+                            </div>
+                            <button id="btnClearSlot1" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-purple-200 text-xs font-bold transition-colors">
+                                &times;
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- SLOT 2 -->
+                    <div id="slot2Card" class="bg-white/5 rounded-2xl p-4 border border-white/10 flex flex-col justify-between min-h-[100px] transition-all">
+                        <div id="slot2Empty" class="flex items-center justify-between py-2">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-white/10 text-brand-accent font-black text-sm flex items-center justify-center">2</span>
+                                <div>
+                                    <p class="text-xs font-bold text-purple-200 uppercase">Slot 2 (Empty)</p>
+                                    <p class="text-xs text-purple-300/70">Click '+ Slot' on candidate partner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="slot2Filled" class="hidden flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-brand-accent text-white font-black text-sm flex items-center justify-center shadow">2</span>
+                                <div>
+                                    <p class="text-[10px] font-extrabold text-brand-accent uppercase tracking-widest">Slot 2 Loaded</p>
+                                    <h4 id="slot2Name" class="text-base font-extrabold text-white cursor-pointer hover:underline" onclick="showPlayerDetails(slot2Id)">--</h4>
+                                    <p id="slot2Meta" class="text-xs text-purple-200/80">--</p>
+                                </div>
+                            </div>
+                            <button id="btnClearSlot2" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-purple-200 text-xs font-bold transition-colors">
+                                &times;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match Banner Status Output -->
+                <div id="slotMatchBanner" class="p-4 rounded-2xl bg-white/10 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <span id="slotMatchIcon" class="w-8 h-8 rounded-xl bg-purple-950 flex items-center justify-center text-sm">💡</span>
+                        <p id="slotMatchText" class="text-xs sm:text-sm font-semibold text-purple-100">
+                            Select Slot 1 to filter candidates needing target appearances to make 450 games.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -219,7 +249,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <h3 class="text-base font-bold text-slate-600 dark:text-slate-300">No candidate combinations found</h3>
-                <p class="text-slate-400 text-xs mt-1">Try clearing the slot player or adjusting search filters.</p>
+                <p class="text-slate-400 text-xs mt-1">Try clearing slots or adjusting search filters.</p>
             </div>
 
             <!-- Pagination Control for performance -->
@@ -237,7 +267,6 @@
             <!-- Modal Backdrop overlay -->
             <div class="fixed inset-0 bg-slate-900/50 dark:bg-slate-950/75 backdrop-blur-sm transition-opacity" id="modalBackdrop" aria-hidden="true"></div>
 
-            <!-- Trick to center modal content in SM view -->
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
             <!-- Modal box -->
@@ -273,7 +302,7 @@
                             <p id="modalPlayerAppearances" class="text-2xl font-black text-brand-light dark:text-brand-dark mt-1">--</p>
                         </div>
                         <button id="btnModalLoadSlot" class="px-4 py-2 bg-brand-light dark:bg-brand-dark text-white dark:text-brand-light rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-sm">
-                            Load into Slot
+                            + Slot
                         </button>
                     </div>
 
@@ -301,9 +330,12 @@
         let searchQuery = '';
         let selectedClub = '';
         let selectedNationality = '';
-        let slotPlayerId = null; // Active player ID loaded into Slot 1
+
+        // Dual Slot State
+        let slot1Id = null;
+        let slot2Id = null;
         let currentModalPlayerId = null;
-        let visibleLimit = 40; // Pagination step limit for render performance
+        let visibleLimit = 40; // Pagination step limit
 
         // DOM elements cache
         const elThemeToggle = document.getElementById('themeToggle');
@@ -323,13 +355,23 @@
         const elLoadMoreContainer = document.getElementById('loadMoreContainer');
         const elBtnLoadMore = document.getElementById('btnLoadMore');
 
-        // Slot Elements
-        const elSlotEmptyState = document.getElementById('slotEmptyState');
-        const elSlotActiveState = document.getElementById('slotActiveState');
-        const elSlotPlayerName = document.getElementById('slotPlayerName');
-        const elSlotPlayerMeta = document.getElementById('slotPlayerMeta');
-        const elSlotTargetApps = document.getElementById('slotTargetApps');
-        const elBtnClearSlot = document.getElementById('btnClearSlot');
+        // Dual Slot Elements
+        const elBtnClearBothSlots = document.getElementById('btnClearBothSlots');
+        const elSlot1Empty = document.getElementById('slot1Empty');
+        const elSlot1Filled = document.getElementById('slot1Filled');
+        const elSlot1Name = document.getElementById('slot1Name');
+        const elSlot1Meta = document.getElementById('slot1Meta');
+        const elBtnClearSlot1 = document.getElementById('btnClearSlot1');
+
+        const elSlot2Empty = document.getElementById('slot2Empty');
+        const elSlot2Filled = document.getElementById('slot2Filled');
+        const elSlot2Name = document.getElementById('slot2Name');
+        const elSlot2Meta = document.getElementById('slot2Meta');
+        const elBtnClearSlot2 = document.getElementById('btnClearSlot2');
+
+        const elSlotMatchBanner = document.getElementById('slotMatchBanner');
+        const elSlotMatchIcon = document.getElementById('slotMatchIcon');
+        const elSlotMatchText = document.getElementById('slotMatchText');
 
         // Modal elements
         const elPlayerModal = document.getElementById('playerModal');
@@ -428,25 +470,30 @@
             });
         }
 
-        // 3. Slot Management
+        // 3. Dual Slot Management Logic
         window.loadPlayerIntoSlot = function(playerId) {
             const player = dataset.views.player_directory[playerId];
             if (!player) return;
 
-            slotPlayerId = playerId;
-
-            // UI Slot banner update
-            elSlotEmptyState.classList.add('hidden');
-            elSlotActiveState.classList.remove('hidden');
-
-            elSlotPlayerName.innerText = `${player.first_name} ${player.last_name}`;
-            elSlotPlayerMeta.innerText = `${player.nationality} \u00B7 ${player.appearances} PL Appearances`;
-
-            const neededApps = 450 - player.appearances;
-            elSlotTargetApps.innerText = `${neededApps} games needed`;
+            // Smart Slot Insertion:
+            // Case 1: Slot 1 is empty -> load into Slot 1
+            if (slot1Id === null) {
+                slot1Id = playerId;
+            }
+            // Case 2: Slot 1 is filled, Slot 2 is empty
+            else if (slot2Id === null) {
+                if (playerId === slot1Id) return; // already in Slot 1
+                slot2Id = playerId;
+            }
+            // Case 3: Both slots are filled -> replace Slot 2
+            else {
+                if (playerId === slot1Id) return;
+                slot2Id = playerId;
+            }
 
             visibleLimit = 40; // reset pagination limit
             closeModal();
+            updateSlotUI();
 
             // Scroll smoothly up to slot banner
             document.getElementById('slotBanner').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -454,21 +501,95 @@
             render();
         };
 
-        window.clearSlot = function() {
-            slotPlayerId = null;
-            elSlotActiveState.classList.add('hidden');
-            elSlotEmptyState.classList.remove('hidden');
+        window.clearSlot1 = function() {
+            // If Slot 2 exists, promote Slot 2 to Slot 1
+            if (slot2Id !== null) {
+                slot1Id = slot2Id;
+                slot2Id = null;
+            } else {
+                slot1Id = null;
+            }
             visibleLimit = 40;
+            updateSlotUI();
             render();
         };
 
-        elBtnClearSlot.addEventListener('click', window.clearSlot);
-
-        window.showSlotPlayerDetails = function() {
-            if (slotPlayerId) {
-                showPlayerDetails(slotPlayerId);
-            }
+        window.clearSlot2 = function() {
+            slot2Id = null;
+            visibleLimit = 40;
+            updateSlotUI();
+            render();
         };
+
+        window.clearBothSlots = function() {
+            slot1Id = null;
+            slot2Id = null;
+            visibleLimit = 40;
+            updateSlotUI();
+            render();
+        };
+
+        elBtnClearSlot1.addEventListener('click', window.clearSlot1);
+        elBtnClearSlot2.addEventListener('click', window.clearSlot2);
+        elBtnClearBothSlots.addEventListener('click', window.clearBothSlots);
+
+        function updateSlotUI() {
+            const dir = dataset.views.player_directory;
+
+            // Slot 1 UI
+            if (slot1Id !== null && dir[slot1Id]) {
+                const p1 = dir[slot1Id];
+                elSlot1Empty.classList.add('hidden');
+                elSlot1Filled.classList.remove('hidden');
+                elSlot1Name.innerText = `${p1.first_name} ${p1.last_name}`;
+                elSlot1Meta.innerText = `${p1.nationality} \u00B7 ${p1.appearances} Caps`;
+            } else {
+                elSlot1Filled.classList.add('hidden');
+                elSlot1Empty.classList.remove('hidden');
+            }
+
+            // Slot 2 UI
+            if (slot2Id !== null && dir[slot2Id]) {
+                const p2 = dir[slot2Id];
+                elSlot2Empty.classList.add('hidden');
+                elSlot2Filled.classList.remove('hidden');
+                elSlot2Name.innerText = `${p2.first_name} ${p2.last_name}`;
+                elSlot2Meta.innerText = `${p2.nationality} \u00B7 ${p2.appearances} Caps`;
+            } else {
+                elSlot2Filled.classList.add('hidden');
+                elSlot2Empty.classList.remove('hidden');
+            }
+
+            // Clear Both button visibility
+            if (slot1Id !== null || slot2Id !== null) {
+                elBtnClearBothSlots.classList.remove('hidden');
+            } else {
+                elBtnClearBothSlots.classList.add('hidden');
+            }
+
+            // Banner status output message
+            if (slot1Id === null && slot2Id === null) {
+                elSlotMatchIcon.innerText = "💡";
+                elSlotMatchText.innerHTML = "Select <strong>Slot 1</strong> to filter candidate partners needing target appearances to make 450 games.";
+            } else if (slot1Id !== null && slot2Id === null) {
+                const p1 = dir[slot1Id];
+                const needed = 450 - p1.appearances;
+                elSlotMatchIcon.innerText = "🎯";
+                elSlotMatchText.innerHTML = `Loaded <strong>${p1.first_name} ${p1.last_name} (${p1.appearances} games)</strong> into Slot 1. Showing candidate partners needing exactly <strong class="text-brand-dark font-black">${needed} games</strong> to equal 450!`;
+            } else if (slot1Id !== null && slot2Id !== null) {
+                const p1 = dir[slot1Id];
+                const p2 = dir[slot2Id];
+                const total = p1.appearances + p2.appearances;
+
+                if (total === 450) {
+                    elSlotMatchIcon.innerText = "🎉";
+                    elSlotMatchText.innerHTML = `<span class="text-brand-dark font-black">PERFECT MATCH!</span> <strong>${p1.first_name} ${p1.last_name} (${p1.appearances})</strong> + <strong>${p2.first_name} ${p2.last_name} (${p2.appearances})</strong> = <strong class="text-brand-dark font-black">450 Premier League Appearances!</strong>`;
+                } else {
+                    elSlotMatchIcon.innerText = "⚠️";
+                    elSlotMatchText.innerHTML = `<strong>${p1.first_name} ${p1.last_name} (${p1.appearances})</strong> + <strong>${p2.first_name} ${p2.last_name} (${p2.appearances})</strong> = <strong>${total} games</strong>. This pair does not equal 450.`;
+                }
+            }
+        }
 
         // 4. Filtering logic
         function getFilteredPairs() {
@@ -481,9 +602,16 @@
                 const id1 = pair[0];
                 const id2 = pair[1];
 
-                // If a slot player is active, pair MUST contain slotPlayerId
-                if (slotPlayerId !== null) {
-                    if (id1 !== slotPlayerId && id2 !== slotPlayerId) {
+                // If Slot 1 is loaded (and Slot 2 is empty) -> pair MUST contain Slot 1
+                if (slot1Id !== null && slot2Id === null) {
+                    if (id1 !== slot1Id && id2 !== slot1Id) {
+                        return false;
+                    }
+                }
+                // If BOTH Slot 1 and Slot 2 are loaded -> pair MUST contain BOTH Slot 1 and Slot 2
+                else if (slot1Id !== null && slot2Id !== null) {
+                    const matchesBoth = (id1 === slot1Id && id2 === slot2Id) || (id1 === slot2Id && id2 === slot1Id);
+                    if (!matchesBoth) {
                         return false;
                     }
                 }
@@ -523,16 +651,16 @@
         function buildGroupedStructure(filteredPairs) {
             const directory = dataset.views.player_directory;
 
-            // If slot player is active, slot player is the single anchor!
-            if (slotPlayerId !== null) {
+            // If slot 1 is active, slot 1 player is the anchor!
+            if (slot1Id !== null) {
                 const partners = [];
                 filteredPairs.forEach(pair => {
-                    const partnerId = pair[0] === slotPlayerId ? pair[1] : pair[0];
+                    const partnerId = pair[0] === slot1Id ? pair[1] : pair[0];
                     partners.push(partnerId);
                 });
                 return {
-                    anchorIds: [slotPlayerId],
-                    playerPartners: { [slotPlayerId]: partners }
+                    anchorIds: [slot1Id],
+                    playerPartners: { [slot1Id]: partners }
                 };
             }
 
@@ -592,12 +720,24 @@
                 card.className = "bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200/60 dark:border-slate-700/60 flex flex-col gap-6 hover:shadow-md transition-all duration-200";
 
                 // Anchor Player Info
-                const isCurrentSlot = slotPlayerId === anchor.id;
+                const isInSlot1 = slot1Id === anchor.id;
+                const isInSlot2 = slot2Id === anchor.id;
+
+                let slotLabel = 'Anchor';
+                let slotBadgeClass = 'bg-brand-light text-brand-dark dark:bg-purple-950 dark:text-brand-dark';
+                if (isInSlot1) {
+                    slotLabel = 'Slot 1 Player';
+                    slotBadgeClass = 'bg-brand-dark text-brand-light font-black';
+                } else if (isInSlot2) {
+                    slotLabel = 'Slot 2 Player';
+                    slotBadgeClass = 'bg-brand-accent text-white font-black';
+                }
+
                 const anchorBlock = `
                     <div class="flex-1">
                         <div class="flex items-center space-x-2.5">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${isCurrentSlot ? 'bg-brand-accent text-white' : 'bg-brand-light text-brand-dark dark:bg-purple-950 dark:text-brand-dark'}">
-                                ${isCurrentSlot ? 'Active Slot Player' : 'Anchor'}
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${slotBadgeClass}">
+                                ${slotLabel}
                             </span>
                             <span class="text-xs font-semibold text-slate-400">${anchor.nationality}</span>
                         </div>
@@ -609,15 +749,16 @@
                 `;
 
                 // Stats Circle & Slot Button
+                const btnLabel = slot1Id === null ? '+ Slot 1' : (slot2Id === null ? '+ Slot 2' : '+ Replace Slot 2');
                 const anchorAppsCircle = `
                     <div class="flex items-center space-x-3">
                         <div class="flex items-center space-x-3 bg-slate-50 dark:bg-slate-900/50 px-4 py-2.5 rounded-2xl border border-slate-100 dark:border-slate-800">
                             <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Caps:</span>
                             <span class="text-lg font-black text-brand-light dark:text-brand-dark">${anchor.appearances}</span>
                         </div>
-                        ${!isCurrentSlot ? `
+                        ${!isInSlot1 && !isInSlot2 ? `
                             <button onclick="loadPlayerIntoSlot(${anchor.id})" class="px-3.5 py-2.5 bg-purple-100 hover:bg-purple-200 dark:bg-purple-950/60 dark:hover:bg-purple-900/80 text-brand-light dark:text-brand-dark font-extrabold text-xs rounded-2xl transition-colors shadow-sm">
-                                + Slot
+                                ${btnLabel}
                             </button>
                         ` : ''}
                     </div>
@@ -625,11 +766,13 @@
 
                 // Partners Block
                 let partnersHTML = '';
-                const maxPartnersToShow = slotPlayerId !== null ? partners.length : 5;
+                const maxPartnersToShow = slot1Id !== null ? partners.length : 5;
 
                 partners.slice(0, maxPartnersToShow).forEach(partnerId => {
                     const partner = directory[partnerId];
                     if (!partner) return;
+
+                    const isPartnerInSlot2 = slot2Id === partner.id;
 
                     partnersHTML += `
                         <div class="flex items-center justify-between text-sm py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-b-0">
@@ -645,15 +788,19 @@
                                 <span class="inline-flex items-center justify-center px-2 py-0.5 rounded-md text-[10px] font-extrabold tracking-wide uppercase ${Math.abs(anchor.appearances - partner.appearances) <= 50 ? 'bg-emerald-50 dark:bg-emerald-950/20 text-emerald-500' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'}">
                                     Diff: ${Math.abs(anchor.appearances - partner.appearances)}
                                 </span>
-                                <button onclick="loadPlayerIntoSlot(${partner.id})" class="px-2.5 py-1 bg-slate-100 hover:bg-purple-100 dark:bg-slate-700 dark:hover:bg-purple-900/60 text-slate-600 hover:text-brand-accent dark:text-slate-200 font-bold text-[11px] rounded-lg transition-colors">
-                                    Slot
-                                </button>
+                                ${!isPartnerInSlot2 ? `
+                                    <button onclick="loadPlayerIntoSlot(${partner.id})" class="px-2.5 py-1 bg-slate-100 hover:bg-purple-100 dark:bg-slate-700 dark:hover:bg-purple-900/60 text-slate-600 hover:text-brand-accent dark:text-slate-200 font-bold text-[11px] rounded-lg transition-colors">
+                                        + Slot
+                                    </button>
+                                ` : `
+                                    <span class="px-2.5 py-1 bg-brand-accent text-white font-bold text-[10px] uppercase tracking-wider rounded-lg">In Slot 2</span>
+                                `}
                             </div>
                         </div>
                     `;
                 });
 
-                if (slotPlayerId === null && partners.length > 5) {
+                if (slot1Id === null && partners.length > 5) {
                     partnersHTML += `
                         <div class="text-center pt-2">
                             <p class="text-xs text-slate-400 font-semibold italic">+ ${partners.length - 5} more candidate partners available</p>
@@ -668,7 +815,7 @@
                             ${anchorAppsCircle}
                         </div>
                         <div class="flex flex-col">
-                            <p class="text-xs font-extrabold text-slate-400 uppercase tracking-widest mb-2">${slotPlayerId !== null ? 'Matching Candidate Partners (' + partners.length + ')' : 'Valid Partners (' + partners.length + ')'}</p>
+                            <p class="text-xs font-extrabold text-slate-400 uppercase tracking-widest mb-2">${slot1Id !== null ? 'Matching Candidate Partners (' + partners.length + ')' : 'Valid Partners (' + partners.length + ')'}</p>
                             ${partnersHTML}
                         </div>
                     </div>
@@ -823,12 +970,13 @@
             }
 
             // Button state
-            if (slotPlayerId === playerId) {
-                elBtnModalLoadSlot.innerText = "Loaded in Slot";
+            if (slot1Id === playerId || slot2Id === playerId) {
+                elBtnModalLoadSlot.innerText = slot1Id === playerId ? "In Slot 1" : "In Slot 2";
                 elBtnModalLoadSlot.disabled = true;
                 elBtnModalLoadSlot.className = "px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-400 rounded-xl font-bold text-xs uppercase tracking-wider cursor-not-allowed";
             } else {
-                elBtnModalLoadSlot.innerText = "Load into Slot";
+                const modalBtnText = slot1Id === null ? "+ Slot 1" : (slot2Id === null ? "+ Slot 2" : "+ Replace Slot 2");
+                elBtnModalLoadSlot.innerText = modalBtnText;
                 elBtnModalLoadSlot.disabled = false;
                 elBtnModalLoadSlot.className = "px-4 py-2 bg-brand-light dark:bg-brand-dark text-white dark:text-brand-light rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-sm";
             }
