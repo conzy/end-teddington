@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PL 450 Appearances Trivia Puzzle</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#37003c', // Premier League dark purple
+                            dark: '#00ff87',  // Premier League vibrant green
+                            accent: '#ff005a' // Premier League pink
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-200">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-brand-light text-white sticky top-0 z-40 shadow-md border-b border-purple-950/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <!-- Football Icon -->
+                <svg class="w-8 h-8 text-brand-dark" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9s2.015-9 4.5-9m0 0a9.003 9.003 0 018.716 2.253M12 3a9.003 9.003 0 00-8.716 2.253M12 12h.01M12 12a1 1 0 110-2 1 1 0 010 2z"></path>
+                </svg>
+                <h1 class="text-lg sm:text-xl font-extrabold tracking-tight">
+                    PL <span class="text-brand-dark">450</span> Trivia Puzzle
+                </h1>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="p-2 rounded-lg bg-purple-950/50 hover:bg-purple-900/60 text-slate-200 hover:text-brand-dark transition-colors duration-200" aria-label="Toggle Theme">
+                    <svg id="sunIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.122a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414-1.414l-.707-.707zm1.414-10.607a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg id="moonIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Dashboard Stats Panel -->
+        <section class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-700/60">
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Target Appearances</p>
+                <p class="text-3xl sm:text-4xl font-black text-brand-light dark:text-brand-dark mt-1">450 <span class="text-lg font-medium text-slate-500">games</span></p>
+            </div>
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-700/60">
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Total Unique Pairs</p>
+                <p id="statTotalPairs" class="text-3xl sm:text-4xl font-black text-brand-light dark:text-brand-dark mt-1">--</p>
+            </div>
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-700/60">
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Unique Players Involved</p>
+                <p id="statUniquePlayers" class="text-3xl sm:text-4xl font-black text-brand-light dark:text-brand-dark mt-1">--</p>
+            </div>
+        </section>
+
+        <!-- Pair Builder Dual-Slot Interactive Panel -->
+        <section id="slotBanner" class="bg-gradient-to-r from-purple-900 via-brand-light to-purple-950 text-white rounded-3xl p-6 shadow-md mb-8 border border-purple-800/50 transition-all duration-300">
+            <div class="flex flex-col gap-6">
+                <!-- Header Title -->
+                <div class="flex items-center justify-between pb-4 border-b border-purple-800/40">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-xl bg-brand-dark/20 text-brand-dark flex items-center justify-center font-bold">
+                            2
+                        </div>
+                        <h3 class="text-base font-extrabold text-white">Dual-Slot Pair Builder</h3>
+                    </div>
+                    <button id="btnClearBothSlots" class="text-xs font-bold text-purple-200 hover:text-brand-dark transition-colors uppercase tracking-wider hidden">
+                        Clear Both Slots &times;
+                    </button>
+                </div>
+
+                <!-- Dual Slots Container -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- SLOT 1 -->
+                    <div id="slot1Card" class="bg-white/5 rounded-2xl p-4 border border-white/10 flex flex-col justify-between min-h-[100px] transition-all">
+                        <div id="slot1Empty" class="flex items-center justify-between py-2">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-white/10 text-brand-dark font-black text-sm flex items-center justify-center">1</span>
+                                <div>
+                                    <p class="text-xs font-bold text-purple-200 uppercase">Slot 1 (Empty)</p>
+                                    <p class="text-xs text-purple-300/70">Click '+ Slot' on any player</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="slot1Filled" class="hidden flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-brand-dark text-brand-light font-black text-sm flex items-center justify-center shadow">1</span>
+                                <div>
+                                    <p class="text-[10px] font-extrabold text-brand-dark uppercase tracking-widest">Slot 1 Loaded</p>
+                                    <h4 id="slot1Name" class="text-base font-extrabold text-white cursor-pointer hover:underline" onclick="showPlayerDetails(slot1Id)">--</h4>
+                                    <p id="slot1Meta" class="text-xs text-purple-200/80">--</p>
+                                </div>
+                            </div>
+                            <button id="btnClearSlot1" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-purple-200 text-xs font-bold transition-colors">
+                                &times;
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- SLOT 2 -->
+                    <div id="slot2Card" class="bg-white/5 rounded-2xl p-4 border border-white/10 flex flex-col justify-between min-h-[100px] transition-all">
+                        <div id="slot2Empty" class="flex items-center justify-between py-2">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-white/10 text-brand-accent font-black text-sm flex items-center justify-center">2</span>
+                                <div>
+                                    <p class="text-xs font-bold text-purple-200 uppercase">Slot 2 (Empty)</p>
+                                    <p class="text-xs text-purple-300/70">Click '+ Slot' on candidate partner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="slot2Filled" class="hidden flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-brand-accent text-white font-black text-sm flex items-center justify-center shadow">2</span>
+                                <div>
+                                    <p class="text-[10px] font-extrabold text-brand-accent uppercase tracking-widest">Slot 2 Loaded</p>
+                                    <h4 id="slot2Name" class="text-base font-extrabold text-white cursor-pointer hover:underline" onclick="showPlayerDetails(slot2Id)">--</h4>
+                                    <p id="slot2Meta" class="text-xs text-purple-200/80">--</p>
+                                </div>
+                            </div>
+                            <button id="btnClearSlot2" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-purple-200 text-xs font-bold transition-colors">
+                                &times;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match Banner Status Output -->
+                <div id="slotMatchBanner" class="p-4 rounded-2xl bg-white/10 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <span id="slotMatchIcon" class="w-8 h-8 rounded-xl bg-purple-950 flex items-center justify-center text-sm">💡</span>
+                        <p id="slotMatchText" class="text-xs sm:text-sm font-semibold text-purple-100">
+                            Select Slot 1 to filter candidates needing target appearances to make 450 games.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Tabs & View Options -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-200 dark:border-slate-700 mb-6 gap-4">
+            <div class="flex space-x-1" role="tablist">
+                <button id="tabGrouped" class="px-5 py-3 font-semibold text-sm border-b-2 border-brand-accent text-brand-accent focus:outline-none transition-colors" role="tab">
+                    Grouped / Ranked View
+                </button>
+                <button id="tabAll" class="px-5 py-3 font-semibold text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 focus:outline-none transition-colors" role="tab">
+                    All Combinations View
+                </button>
+            </div>
+            <div class="text-xs text-slate-400 pb-2 md:pb-0" id="dataGeneratedTime">
+                Generated at: --
+            </div>
+        </div>
+
+        <!-- Filter Controls Panel -->
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-700/60 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Search Input -->
+                <div class="flex flex-col gap-1.5">
+                    <label for="searchPlayer" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Search Players</label>
+                    <div class="relative">
+                        <input type="text" id="searchPlayer" placeholder="e.g. Kyle Walker" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all text-sm">
+                        <svg class="w-5 h-5 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Club Filter -->
+                <div class="flex flex-col gap-1.5">
+                    <label for="filterClub" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter by Club</label>
+                    <select id="filterClub" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all text-sm">
+                        <option value="">All Clubs</option>
+                    </select>
+                </div>
+
+                <!-- Nationality Filter -->
+                <div class="flex flex-col gap-1.5">
+                    <label for="filterNationality" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter by Nationality</label>
+                    <select id="filterNationality" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all text-sm">
+                        <option value="">All Nationalities</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main View Container -->
+        <section id="viewContainer">
+            <!-- Loading Indicator -->
+            <div id="loading" class="py-20 flex flex-col items-center justify-center space-y-4">
+                <svg class="animate-spin h-8 h-8 text-brand-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.002 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <p class="text-slate-400 text-sm font-medium">Loading PL appearance pairings dataset...</p>
+            </div>
+
+            <!-- Content list -->
+            <div id="contentList" class="space-y-6"></div>
+
+            <!-- Empty / No Results State -->
+            <div id="emptyState" class="hidden py-16 text-center bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-700/60">
+                <svg class="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h3 class="text-base font-bold text-slate-600 dark:text-slate-300">No candidate combinations found</h3>
+                <p class="text-slate-400 text-xs mt-1">Try clearing slots or adjusting search filters.</p>
+            </div>
+
+            <!-- Pagination Control for performance -->
+            <div id="loadMoreContainer" class="hidden py-6 text-center">
+                <button id="btnLoadMore" class="px-6 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-sm hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors shadow-sm focus:outline-none">
+                    Load More Pairings
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Player Details Modal -->
+    <div id="playerModal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Modal Backdrop overlay -->
+            <div class="fixed inset-0 bg-slate-900/50 dark:bg-slate-950/75 backdrop-blur-sm transition-opacity" id="modalBackdrop" aria-hidden="true"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal box -->
+            <div class="inline-block align-bottom bg-white dark:bg-slate-800 rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-slate-100 dark:border-slate-700">
+                <div class="px-6 pt-6 pb-4 flex justify-between items-start border-b border-slate-100 dark:border-slate-700">
+                    <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white" id="modalPlayerName">
+                        Player Name
+                    </h3>
+                    <button id="modalClose" class="rounded-lg p-1 bg-slate-100 dark:bg-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 focus:outline-none">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="p-6 space-y-5">
+                    <!-- Basic Info -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Birth Year</p>
+                            <p id="modalPlayerBirthYear" class="text-sm font-semibold mt-1">--</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Nationality</p>
+                            <p id="modalPlayerNationality" class="text-sm font-semibold mt-1">--</p>
+                        </div>
+                    </div>
+
+                    <!-- Appearances block -->
+                    <div class="bg-purple-50 dark:bg-purple-950/20 p-4 rounded-2xl border border-purple-100/50 dark:border-purple-900/50 flex justify-between items-center">
+                        <div>
+                            <p class="text-xs font-bold text-purple-400 uppercase tracking-wider">Premier League Appearances</p>
+                            <p id="modalPlayerAppearances" class="text-2xl font-black text-brand-light dark:text-brand-dark mt-1">--</p>
+                        </div>
+                        <button id="btnModalLoadSlot" class="px-4 py-2 bg-brand-light dark:bg-brand-dark text-white dark:text-brand-light rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-sm">
+                            + Slot
+                        </button>
+                    </div>
+
+                    <!-- Teams List -->
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Premier League Clubs</p>
+                        <div id="modalPlayerTeams" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-slate-900/50 px-6 py-4 flex justify-end">
+                    <button id="modalCloseBtn" class="px-5 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-xl font-semibold text-sm hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors focus:outline-none">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Global state variables
+        let dataset = null;
+        let currentTab = 'grouped'; // 'grouped' or 'all'
+        let searchQuery = '';
+        let selectedClub = '';
+        let selectedNationality = '';
+
+        // Dual Slot State
+        let slot1Id = null;
+        let slot2Id = null;
+        let currentModalPlayerId = null;
+        let visibleLimit = 40; // Pagination step limit
+
+        // DOM elements cache
+        const elThemeToggle = document.getElementById('themeToggle');
+        const elSunIcon = document.getElementById('sunIcon');
+        const elMoonIcon = document.getElementById('moonIcon');
+        const elStatTotalPairs = document.getElementById('statTotalPairs');
+        const elStatUniquePlayers = document.getElementById('statUniquePlayers');
+        const elDataGeneratedTime = document.getElementById('dataGeneratedTime');
+        const elTabGrouped = document.getElementById('tabGrouped');
+        const elTabAll = document.getElementById('tabAll');
+        const elSearchPlayer = document.getElementById('searchPlayer');
+        const elFilterClub = document.getElementById('filterClub');
+        const elFilterNationality = document.getElementById('filterNationality');
+        const elLoading = document.getElementById('loading');
+        const elContentList = document.getElementById('contentList');
+        const elEmptyState = document.getElementById('emptyState');
+        const elLoadMoreContainer = document.getElementById('loadMoreContainer');
+        const elBtnLoadMore = document.getElementById('btnLoadMore');
+
+        // Dual Slot Elements
+        const elBtnClearBothSlots = document.getElementById('btnClearBothSlots');
+        const elSlot1Empty = document.getElementById('slot1Empty');
+        const elSlot1Filled = document.getElementById('slot1Filled');
+        const elSlot1Name = document.getElementById('slot1Name');
+        const elSlot1Meta = document.getElementById('slot1Meta');
+        const elBtnClearSlot1 = document.getElementById('btnClearSlot1');
+
+        const elSlot2Empty = document.getElementById('slot2Empty');
+        const elSlot2Filled = document.getElementById('slot2Filled');
+        const elSlot2Name = document.getElementById('slot2Name');
+        const elSlot2Meta = document.getElementById('slot2Meta');
+        const elBtnClearSlot2 = document.getElementById('btnClearSlot2');
+
+        const elSlotMatchBanner = document.getElementById('slotMatchBanner');
+        const elSlotMatchIcon = document.getElementById('slotMatchIcon');
+        const elSlotMatchText = document.getElementById('slotMatchText');
+
+        // Modal elements
+        const elPlayerModal = document.getElementById('playerModal');
+        const elModalBackdrop = document.getElementById('modalBackdrop');
+        const elModalPlayerName = document.getElementById('modalPlayerName');
+        const elModalPlayerBirthYear = document.getElementById('modalPlayerBirthYear');
+        const elModalPlayerNationality = document.getElementById('modalPlayerNationality');
+        const elModalPlayerAppearances = document.getElementById('modalPlayerAppearances');
+        const elModalPlayerTeams = document.getElementById('modalPlayerTeams');
+        const elBtnModalLoadSlot = document.getElementById('btnModalLoadSlot');
+        const elModalClose = document.getElementById('modalClose');
+        const elModalCloseBtn = document.getElementById('modalCloseBtn');
+
+        // 1. Dark Mode setup
+        function initTheme() {
+            const stored = localStorage.getItem('theme');
+            if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+                elSunIcon.classList.remove('hidden');
+                elMoonIcon.classList.add('hidden');
+            } else {
+                document.documentElement.classList.add('light');
+                document.documentElement.classList.remove('dark');
+                elSunIcon.classList.add('hidden');
+                elMoonIcon.classList.remove('hidden');
+            }
+        }
+
+        elThemeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            document.documentElement.classList.toggle('light', !isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            elSunIcon.classList.toggle('hidden', !isDark);
+            elMoonIcon.classList.toggle('hidden', isDark);
+        });
+
+        // 2. Fetch dataset
+        async function loadData() {
+            try {
+                const response = await fetch('./results.json');
+                dataset = await response.json();
+                populateStats();
+                populateFilters();
+                render();
+            } catch (err) {
+                console.error("Error loading player data:", err);
+                elLoading.innerHTML = `
+                    <div class="text-red-500 text-center font-semibold text-sm">
+                        <svg class="w-8 h-8 mx-auto mb-2 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                        Failed to load trivia dataset locally. Please make sure results.json exists.
+                    </div>
+                `;
+            }
+        }
+
+        function populateStats() {
+            const countPairs = dataset.views.all_combinations.length;
+            const countPlayers = Object.keys(dataset.views.player_directory).length;
+
+            elStatTotalPairs.innerText = countPairs.toLocaleString();
+            elStatUniquePlayers.innerText = countPlayers.toLocaleString();
+
+            const date = new Date(dataset.generated_at);
+            elDataGeneratedTime.innerText = `Dataset generated at: ${date.toLocaleString()}`;
+        }
+
+        function populateFilters() {
+            const directory = dataset.views.player_directory;
+            const nationalities = new Set();
+            const clubs = new Set();
+
+            Object.values(directory).forEach(p => {
+                if (p.nationality) nationalities.add(p.nationality);
+                if (p.teams) p.teams.forEach(t => clubs.add(t));
+            });
+
+            // Populate Clubs drop down
+            const sortedClubs = Array.from(clubs).sort();
+            sortedClubs.forEach(club => {
+                const opt = document.createElement('option');
+                opt.value = club;
+                opt.innerText = club;
+                elFilterClub.appendChild(opt);
+            });
+
+            // Populate Nationality drop down
+            const sortedNats = Array.from(nationalities).sort();
+            sortedNats.forEach(nat => {
+                const opt = document.createElement('option');
+                opt.value = nat;
+                opt.innerText = nat;
+                elFilterNationality.appendChild(opt);
+            });
+        }
+
+        // 3. Dual Slot Management Logic
+        window.loadPlayerIntoSlot = function(playerId) {
+            const player = dataset.views.player_directory[playerId];
+            if (!player) return;
+
+            // Smart Slot Insertion:
+            // Case 1: Slot 1 is empty -> load into Slot 1
+            if (slot1Id === null) {
+                slot1Id = playerId;
+            }
+            // Case 2: Slot 1 is filled, Slot 2 is empty
+            else if (slot2Id === null) {
+                if (playerId === slot1Id) return; // already in Slot 1
+                slot2Id = playerId;
+            }
+            // Case 3: Both slots are filled -> replace Slot 2
+            else {
+                if (playerId === slot1Id) return;
+                slot2Id = playerId;
+            }
+
+            visibleLimit = 40; // reset pagination limit
+            closeModal();
+            updateSlotUI();
+
+            // Scroll smoothly up to slot banner
+            document.getElementById('slotBanner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            render();
+        };
+
+        window.clearSlot1 = function() {
+            // If Slot 2 exists, promote Slot 2 to Slot 1
+            if (slot2Id !== null) {
+                slot1Id = slot2Id;
+                slot2Id = null;
+            } else {
+                slot1Id = null;
+            }
+            visibleLimit = 40;
+            updateSlotUI();
+            render();
+        };
+
+        window.clearSlot2 = function() {
+            slot2Id = null;
+            visibleLimit = 40;
+            updateSlotUI();
+            render();
+        };
+
+        window.clearBothSlots = function() {
+            slot1Id = null;
+            slot2Id = null;
+            visibleLimit = 40;
+            updateSlotUI();
+            render();
+        };
+
+        elBtnClearSlot1.addEventListener('click', window.clearSlot1);
+        elBtnClearSlot2.addEventListener('click', window.clearSlot2);
+        elBtnClearBothSlots.addEventListener('click', window.clearBothSlots);
+
+        function updateSlotUI() {
+            const dir = dataset.views.player_directory;
+
+            // Slot 1 UI
+            if (slot1Id !== null && dir[slot1Id]) {
+                const p1 = dir[slot1Id];
+                elSlot1Empty.classList.add('hidden');
+                elSlot1Filled.classList.remove('hidden');
+                elSlot1Name.innerText = `${p1.first_name} ${p1.last_name}`;
+                elSlot1Meta.innerText = `${p1.nationality} \u00B7 ${p1.appearances} Caps`;
+            } else {
+                elSlot1Filled.classList.add('hidden');
+                elSlot1Empty.classList.remove('hidden');
+            }
+
+            // Slot 2 UI
+            if (slot2Id !== null && dir[slot2Id]) {
+                const p2 = dir[slot2Id];
+                elSlot2Empty.classList.add('hidden');
+                elSlot2Filled.classList.remove('hidden');
+                elSlot2Name.innerText = `${p2.first_name} ${p2.last_name}`;
+                elSlot2Meta.innerText = `${p2.nationality} \u00B7 ${p2.appearances} Caps`;
+            } else {
+                elSlot2Filled.classList.add('hidden');
+                elSlot2Empty.classList.remove('hidden');
+            }
+
+            // Clear Both button visibility
+            if (slot1Id !== null || slot2Id !== null) {
+                elBtnClearBothSlots.classList.remove('hidden');
+            } else {
+                elBtnClearBothSlots.classList.add('hidden');
+            }
+
+            // Banner status output message
+            if (slot1Id === null && slot2Id === null) {
+                elSlotMatchIcon.innerText = "💡";
+                elSlotMatchText.innerHTML = "Select <strong>Slot 1</strong> to filter candidate partners needing target appearances to make 450 games.";
+            } else if (slot1Id !== null && slot2Id === null) {
+                const p1 = dir[slot1Id];
+                const needed = 450 - p1.appearances;
+                elSlotMatchIcon.innerText = "🎯";
+                elSlotMatchText.innerHTML = `Loaded <strong>${p1.first_name} ${p1.last_name} (${p1.appearances} games)</strong> into Slot 1. Showing candidate partners needing exactly <strong class="text-brand-dark font-black">${needed} games</strong> to equal 450!`;
+            } else if (slot1Id !== null && slot2Id !== null) {
+                const p1 = dir[slot1Id];
+                const p2 = dir[slot2Id];
+                const total = p1.appearances + p2.appearances;
+
+                if (total === 450) {
+                    elSlotMatchIcon.innerText = "🎉";
+                    elSlotMatchText.innerHTML = `<span class="text-brand-dark font-black">PERFECT MATCH!</span> <strong>${p1.first_name} ${p1.last_name} (${p1.appearances})</strong> + <strong>${p2.first_name} ${p2.last_name} (${p2.appearances})</strong> = <strong class="text-brand-dark font-black">450 Premier League Appearances!</strong>`;
+                } else {
+                    elSlotMatchIcon.innerText = "⚠️";
+                    elSlotMatchText.innerHTML = `<strong>${p1.first_name} ${p1.last_name} (${p1.appearances})</strong> + <strong>${p2.first_name} ${p2.last_name} (${p2.appearances})</strong> = <strong>${total} games</strong>. This pair does not equal 450.`;
+                }
+            }
+        }
+
+        // 4. Filtering logic
+        function getFilteredPairs() {
+            const pairsList = dataset.views.ranked_by_balance;
+            const directory = dataset.views.player_directory;
+
+            const q = searchQuery.toLowerCase().trim();
+
+            return pairsList.filter(pair => {
+                const id1 = pair[0];
+                const id2 = pair[1];
+
+                // If Slot 1 is loaded (and Slot 2 is empty) -> pair MUST contain Slot 1
+                if (slot1Id !== null && slot2Id === null) {
+                    if (id1 !== slot1Id && id2 !== slot1Id) {
+                        return false;
+                    }
+                }
+                // If BOTH Slot 1 and Slot 2 are loaded -> pair MUST contain BOTH Slot 1 and Slot 2
+                else if (slot1Id !== null && slot2Id !== null) {
+                    const matchesBoth = (id1 === slot1Id && id2 === slot2Id) || (id1 === slot2Id && id2 === slot1Id);
+                    if (!matchesBoth) {
+                        return false;
+                    }
+                }
+
+                const p1 = directory[id1];
+                const p2 = directory[id2];
+
+                if (!p1 || !p2) return false;
+
+                // Query search
+                if (q) {
+                    const p1FullName = `${p1.first_name} ${p1.last_name}`.toLowerCase();
+                    const p2FullName = `${p2.first_name} ${p2.last_name}`.toLowerCase();
+                    const matchesName = p1FullName.includes(q) || p2FullName.includes(q);
+                    if (!matchesName) return false;
+                }
+
+                // Club search
+                if (selectedClub) {
+                    const p1Clubs = p1.teams || [];
+                    const p2Clubs = p2.teams || [];
+                    const matchesClub = p1Clubs.includes(selectedClub) || p2Clubs.includes(selectedClub);
+                    if (!matchesClub) return false;
+                }
+
+                // Nationality search
+                if (selectedNationality) {
+                    const matchesNationality = p1.nationality === selectedNationality || p2.nationality === selectedNationality;
+                    if (!matchesNationality) return false;
+                }
+
+                return true;
+            });
+        }
+
+        // 5. Grouping logic for "Grouped / Ranked View"
+        function buildGroupedStructure(filteredPairs) {
+            const directory = dataset.views.player_directory;
+
+            // If slot 1 is active, slot 1 player is the anchor!
+            if (slot1Id !== null) {
+                const partners = [];
+                filteredPairs.forEach(pair => {
+                    const partnerId = pair[0] === slot1Id ? pair[1] : pair[0];
+                    partners.push(partnerId);
+                });
+                return {
+                    anchorIds: [slot1Id],
+                    playerPartners: { [slot1Id]: partners }
+                };
+            }
+
+            const playerPartners = {};
+            filteredPairs.forEach(pair => {
+                const [id1, id2] = pair;
+                if (!playerPartners[id1]) playerPartners[id1] = [];
+                if (!playerPartners[id2]) playerPartners[id2] = [];
+                playerPartners[id1].push(id2);
+                playerPartners[id2].push(id1);
+            });
+
+            // Sort anchor players by their number of partners descending
+            const anchorIds = Object.keys(playerPartners).sort((a, b) => {
+                return playerPartners[b].length - playerPartners[a].length;
+            });
+
+            return { anchorIds, playerPartners };
+        }
+
+        // 6. Render engine
+        function render() {
+            elLoading.classList.add('hidden');
+            elContentList.innerHTML = '';
+
+            const filteredPairs = getFilteredPairs();
+
+            if (filteredPairs.length === 0) {
+                elEmptyState.classList.remove('hidden');
+                elLoadMoreContainer.classList.add('hidden');
+                return;
+            } else {
+                elEmptyState.classList.add('hidden');
+            }
+
+            if (currentTab === 'grouped') {
+                renderGrouped(filteredPairs);
+            } else {
+                renderAllCombinations(filteredPairs);
+            }
+        }
+
+        function renderGrouped(filteredPairs) {
+            const directory = dataset.views.player_directory;
+            const { anchorIds, playerPartners } = buildGroupedStructure(filteredPairs);
+
+            const pageAnchors = anchorIds.slice(0, visibleLimit);
+
+            pageAnchors.forEach(anchorId => {
+                const anchor = directory[anchorId];
+                if (!anchor) return;
+
+                const partners = playerPartners[anchorId];
+
+                // Card Container
+                const card = document.createElement('div');
+                card.className = "bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200/60 dark:border-slate-700/60 flex flex-col gap-6 hover:shadow-md transition-all duration-200";
+
+                // Anchor Player Info
+                const isInSlot1 = slot1Id === anchor.id;
+                const isInSlot2 = slot2Id === anchor.id;
+
+                let slotLabel = 'Anchor';
+                let slotBadgeClass = 'bg-brand-light text-brand-dark dark:bg-purple-950 dark:text-brand-dark';
+                if (isInSlot1) {
+                    slotLabel = 'Slot 1 Player';
+                    slotBadgeClass = 'bg-brand-dark text-brand-light font-black';
+                } else if (isInSlot2) {
+                    slotLabel = 'Slot 2 Player';
+                    slotBadgeClass = 'bg-brand-accent text-white font-black';
+                }
+
+                const anchorBlock = `
+                    <div class="flex-1">
+                        <div class="flex items-center space-x-2.5">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${slotBadgeClass}">
+                                ${slotLabel}
+                            </span>
+                            <span class="text-xs font-semibold text-slate-400">${anchor.nationality}</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 dark:text-white mt-1 hover:text-brand-accent dark:hover:text-brand-dark cursor-pointer" onclick="showPlayerDetails(${anchor.id})">
+                            ${anchor.first_name} ${anchor.last_name}
+                        </h4>
+                        <p class="text-xs font-medium text-slate-400 mt-1">Born: ${anchor.birth_year} &middot; PL Clubs: ${anchor.teams.slice(0, 3).join(', ')}${anchor.teams.length > 3 ? '...' : ''}</p>
+                    </div>
+                `;
+
+                // Stats Circle & Slot Button
+                const btnLabel = slot1Id === null ? '+ Slot 1' : (slot2Id === null ? '+ Slot 2' : '+ Replace Slot 2');
+                const anchorAppsCircle = `
+                    <div class="flex items-center space-x-3">
+                        <div class="flex items-center space-x-3 bg-slate-50 dark:bg-slate-900/50 px-4 py-2.5 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Caps:</span>
+                            <span class="text-lg font-black text-brand-light dark:text-brand-dark">${anchor.appearances}</span>
+                        </div>
+                        ${!isInSlot1 && !isInSlot2 ? `
+                            <button onclick="loadPlayerIntoSlot(${anchor.id})" class="px-3.5 py-2.5 bg-purple-100 hover:bg-purple-200 dark:bg-purple-950/60 dark:hover:bg-purple-900/80 text-brand-light dark:text-brand-dark font-extrabold text-xs rounded-2xl transition-colors shadow-sm">
+                                ${btnLabel}
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+
+                // Partners Block
+                let partnersHTML = '';
+                const maxPartnersToShow = slot1Id !== null ? partners.length : 5;
+
+                partners.slice(0, maxPartnersToShow).forEach(partnerId => {
+                    const partner = directory[partnerId];
+                    if (!partner) return;
+
+                    const isPartnerInSlot2 = slot2Id === partner.id;
+
+                    partnersHTML += `
+                        <div class="flex items-center justify-between text-sm py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-b-0">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-slate-400 text-xs font-semibold select-none">&bull;</span>
+                                <span class="font-bold text-slate-700 dark:text-slate-200 hover:text-brand-accent dark:hover:text-brand-dark cursor-pointer" onclick="showPlayerDetails(${partner.id})">
+                                    ${partner.first_name} ${partner.last_name}
+                                </span>
+                                <span class="text-[10px] px-1.5 py-0.2 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-400 dark:text-slate-300 font-semibold">${partner.nationality}</span>
+                            </div>
+                            <div class="flex items-center space-x-3 sm:space-x-4">
+                                <span class="text-xs font-semibold text-slate-400">Caps: <strong class="text-slate-700 dark:text-slate-200 font-extrabold">${partner.appearances}</strong></span>
+                                <span class="inline-flex items-center justify-center px-2 py-0.5 rounded-md text-[10px] font-extrabold tracking-wide uppercase ${Math.abs(anchor.appearances - partner.appearances) <= 50 ? 'bg-emerald-50 dark:bg-emerald-950/20 text-emerald-500' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'}">
+                                    Diff: ${Math.abs(anchor.appearances - partner.appearances)}
+                                </span>
+                                ${!isPartnerInSlot2 ? `
+                                    <button onclick="loadPlayerIntoSlot(${partner.id})" class="px-2.5 py-1 bg-slate-100 hover:bg-purple-100 dark:bg-slate-700 dark:hover:bg-purple-900/60 text-slate-600 hover:text-brand-accent dark:text-slate-200 font-bold text-[11px] rounded-lg transition-colors">
+                                        + Slot
+                                    </button>
+                                ` : `
+                                    <span class="px-2.5 py-1 bg-brand-accent text-white font-bold text-[10px] uppercase tracking-wider rounded-lg">In Slot 2</span>
+                                `}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                if (slot1Id === null && partners.length > 5) {
+                    partnersHTML += `
+                        <div class="text-center pt-2">
+                            <p class="text-xs text-slate-400 font-semibold italic">+ ${partners.length - 5} more candidate partners available</p>
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="flex-1 flex flex-col gap-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-700/60">
+                            ${anchorBlock}
+                            ${anchorAppsCircle}
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-xs font-extrabold text-slate-400 uppercase tracking-widest mb-2">${slot1Id !== null ? 'Matching Candidate Partners (' + partners.length + ')' : 'Valid Partners (' + partners.length + ')'}</p>
+                            ${partnersHTML}
+                        </div>
+                    </div>
+                `;
+                elContentList.appendChild(card);
+            });
+
+            if (anchorIds.length > visibleLimit) {
+                elLoadMoreContainer.classList.remove('hidden');
+            } else {
+                elLoadMoreContainer.classList.add('hidden');
+            }
+        }
+
+        function renderAllCombinations(filteredPairs) {
+            const directory = dataset.views.player_directory;
+            const pagePairs = filteredPairs.slice(0, visibleLimit);
+
+            pagePairs.forEach(pair => {
+                const p1 = directory[pair[0]];
+                const p2 = directory[pair[1]];
+                if (!p1 || !p2) return;
+
+                const diff = Math.abs(p1.appearances - p2.appearances);
+
+                const item = document.createElement('div');
+                item.className = "bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200/60 dark:border-slate-700/60 flex flex-col sm:flex-row items-center justify-between gap-4 hover:shadow-md transition-all duration-200";
+
+                item.innerHTML = `
+                    <!-- Player A -->
+                    <div class="flex-1 text-center sm:text-left flex items-center justify-between sm:justify-start gap-3">
+                        <div>
+                            <h5 class="text-base font-extrabold text-slate-900 dark:text-white hover:text-brand-accent dark:hover:text-brand-dark cursor-pointer" onclick="showPlayerDetails(${p1.id})">
+                                ${p1.first_name} ${p1.last_name}
+                            </h5>
+                            <p class="text-xs text-slate-400 font-semibold mt-0.5">${p1.nationality} &middot; <strong class="text-brand-light dark:text-brand-dark font-extrabold">${p1.appearances}</strong> games</p>
+                        </div>
+                        <button onclick="loadPlayerIntoSlot(${p1.id})" class="px-2 py-1 bg-slate-100 hover:bg-purple-100 dark:bg-slate-700 dark:hover:bg-purple-900/60 text-slate-600 hover:text-brand-accent dark:text-slate-200 font-bold text-[10px] rounded-lg transition-colors">
+                            + Slot
+                        </button>
+                    </div>
+
+                    <!-- Visual Plus Indicator -->
+                    <div class="flex flex-col items-center justify-center select-none shrink-0">
+                        <span class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-slate-400 font-black text-sm border border-slate-200/40 dark:border-slate-700/40">+</span>
+                    </div>
+
+                    <!-- Player B -->
+                    <div class="flex-1 text-center sm:text-right flex items-center justify-between sm:justify-end gap-3">
+                        <button onclick="loadPlayerIntoSlot(${p2.id})" class="px-2 py-1 bg-slate-100 hover:bg-purple-100 dark:bg-slate-700 dark:hover:bg-purple-900/60 text-slate-600 hover:text-brand-accent dark:text-slate-200 font-bold text-[10px] rounded-lg transition-colors order-last sm:order-first">
+                            + Slot
+                        </button>
+                        <div>
+                            <h5 class="text-base font-extrabold text-slate-900 dark:text-white hover:text-brand-accent dark:hover:text-brand-dark cursor-pointer" onclick="showPlayerDetails(${p2.id})">
+                                ${p2.first_name} ${p2.last_name}
+                            </h5>
+                            <p class="text-xs text-slate-400 font-semibold mt-0.5">${p2.nationality} &middot; <strong class="text-brand-light dark:text-brand-dark font-extrabold">${p2.appearances}</strong> games</p>
+                        </div>
+                    </div>
+
+                    <!-- Split Line on Small devices -->
+                    <div class="w-full sm:w-px sm:h-8 bg-slate-200 dark:bg-slate-700 shrink-0"></div>
+
+                    <!-- Pair metadata status -->
+                    <div class="flex flex-col items-center justify-center shrink-0 w-32">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Balance Diff</span>
+                        <span class="text-base font-black text-slate-800 dark:text-white mt-0.5">${diff}</span>
+                        <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded mt-1 ${diff <= 50 ? 'bg-emerald-50 dark:bg-emerald-950/20 text-emerald-500' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'}">
+                            ${diff === 0 ? 'Ideal (Perfect)' : (diff <= 50 ? 'Highly Balanced' : 'Unlikely Combination')}
+                        </span>
+                    </div>
+                `;
+                elContentList.appendChild(item);
+            });
+
+            if (filteredPairs.length > visibleLimit) {
+                elLoadMoreContainer.classList.remove('hidden');
+            } else {
+                elLoadMoreContainer.classList.add('hidden');
+            }
+        }
+
+        // 7. Navigation Tabs events
+        elTabGrouped.addEventListener('click', () => {
+            if (currentTab === 'grouped') return;
+            currentTab = 'grouped';
+            visibleLimit = 40;
+            elTabGrouped.className = "px-5 py-3 font-semibold text-sm border-b-2 border-brand-accent text-brand-accent focus:outline-none transition-colors";
+            elTabAll.className = "px-5 py-3 font-semibold text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 focus:outline-none transition-colors";
+            render();
+        });
+
+        elTabAll.addEventListener('click', () => {
+            if (currentTab === 'all') return;
+            currentTab = 'all';
+            visibleLimit = 40;
+            elTabAll.className = "px-5 py-3 font-semibold text-sm border-b-2 border-brand-accent text-brand-accent focus:outline-none transition-colors";
+            elTabGrouped.className = "px-5 py-3 font-semibold text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 focus:outline-none transition-colors";
+            render();
+        });
+
+        // 8. Load more action
+        elBtnLoadMore.addEventListener('click', () => {
+            visibleLimit += 40;
+            render();
+        });
+
+        // 9. Search & Filters events
+        elSearchPlayer.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            visibleLimit = 40;
+            render();
+        });
+
+        elFilterClub.addEventListener('change', (e) => {
+            selectedClub = e.target.value;
+            visibleLimit = 40;
+            render();
+        });
+
+        elFilterNationality.addEventListener('change', (e) => {
+            selectedNationality = e.target.value;
+            visibleLimit = 40;
+            render();
+        });
+
+        // 10. Modal Controller
+        window.showPlayerDetails = function(playerId) {
+            const player = dataset.views.player_directory[playerId];
+            if (!player) return;
+
+            currentModalPlayerId = playerId;
+
+            elModalPlayerName.innerText = `${player.first_name} ${player.last_name}`;
+            elModalPlayerBirthYear.innerText = player.birth_year;
+            elModalPlayerNationality.innerText = player.nationality;
+            elModalPlayerAppearances.innerText = `${player.appearances} PL Appearances`;
+
+            // Populate clubs badges
+            elModalPlayerTeams.innerHTML = '';
+            if (player.teams && player.teams.length > 0) {
+                player.teams.forEach(team => {
+                    const badge = document.createElement('span');
+                    badge.className = "inline-flex items-center px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800 text-slate-700 dark:text-slate-300 shadow-sm";
+                    badge.innerText = team;
+                    elModalPlayerTeams.appendChild(badge);
+                });
+            } else {
+                elModalPlayerTeams.innerHTML = `
+                    <p class="text-xs text-slate-400 italic">No clubs recorded or missing Wikidata relationships.</p>
+                `;
+            }
+
+            // Button state
+            if (slot1Id === playerId || slot2Id === playerId) {
+                elBtnModalLoadSlot.innerText = slot1Id === playerId ? "In Slot 1" : "In Slot 2";
+                elBtnModalLoadSlot.disabled = true;
+                elBtnModalLoadSlot.className = "px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-400 rounded-xl font-bold text-xs uppercase tracking-wider cursor-not-allowed";
+            } else {
+                const modalBtnText = slot1Id === null ? "+ Slot 1" : (slot2Id === null ? "+ Slot 2" : "+ Replace Slot 2");
+                elBtnModalLoadSlot.innerText = modalBtnText;
+                elBtnModalLoadSlot.disabled = false;
+                elBtnModalLoadSlot.className = "px-4 py-2 bg-brand-light dark:bg-brand-dark text-white dark:text-brand-light rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-sm";
+            }
+
+            elPlayerModal.classList.remove('hidden');
+        };
+
+        elBtnModalLoadSlot.addEventListener('click', () => {
+            if (currentModalPlayerId !== null) {
+                loadPlayerIntoSlot(currentModalPlayerId);
+            }
+        });
+
+        function closeModal() {
+            elPlayerModal.classList.add('hidden');
+        }
+
+        elModalClose.addEventListener('click', closeModal);
+        elModalCloseBtn.addEventListener('click', closeModal);
+        elModalBackdrop.addEventListener('click', closeModal);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !elPlayerModal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Startup
+        initTheme();
+        loadData();
+    </script>
+</body>
+</html>
